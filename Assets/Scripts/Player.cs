@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float startVelocity = 0.3f;
 
+    private float playerMaxVelocity = 18f;
 
     void Start()
     {
@@ -22,13 +23,13 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(rb.velocity.x > 20)
+        if(rb.velocity.x > playerMaxVelocity)
         {
-            rb.velocity = new Vector2(20, rb.velocity.y);
+            rb.velocity = new Vector2(playerMaxVelocity, rb.velocity.y);
         }
-        if (rb.velocity.y > 20)
+        if (rb.velocity.y > playerMaxVelocity)
         {
-            rb.velocity = new Vector2(rb.velocity.x, 20);
+            rb.velocity = new Vector2(rb.velocity.x, playerMaxVelocity);
         }
     }
 

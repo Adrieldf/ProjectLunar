@@ -33,6 +33,10 @@ public class GrapplingRope : MonoBehaviour
     [SerializeField]
     private float grapplingTime = 0.5f;
 
+    [SerializeField]
+    private Animator animator;
+
+
     private float moveTime;
     private float waveSize = 0;
 
@@ -44,6 +48,8 @@ public class GrapplingRope : MonoBehaviour
         LinePointsToFirePoint();
 
         lineRenderer.enabled = true;
+        animator.SetBool("RopeBreak", true);
+
     }
 
     private void OnDisable()
@@ -51,6 +57,7 @@ public class GrapplingRope : MonoBehaviour
         lineRenderer.enabled = false;
         IsGrappling = false;
         IsTooFar = false;
+        animator.SetBool("RopeBreak", false);
     }
 
 
@@ -58,7 +65,8 @@ public class GrapplingRope : MonoBehaviour
     {
         moveTime += Time.deltaTime;
         DrawRope();
-        if(moveTime > grapplingTime)
+
+        if (moveTime > grapplingTime)
         {
             grapplingGun.DisableRope();
         }
